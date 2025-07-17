@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task 3 - Joke Page</title>
+  <link rel="stylesheet" href="Task3.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Random Joke Generator 😂</h1>
+  </header>
+
+  <main class="container">
+    <section class="api-section">
+      <h2>Need a Laugh?</h2>
+      <button onclick="fetchJoke()">Get a Random Joke</button>
+      <p id="jokeDisplay">Click the button to see a joke.</p>
+    </section>
+    <section class="link-section">
+      <a href="Task3.html"><button>Back to Quiz 🧠</button></a>
+    </section>
+  </main>
+
+  <script>
+    function fetchJoke() {
+      fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("jokeDisplay").textContent = `${data.setup} - ${data.punchline}`;
+        })
+        .catch(err => {
+          document.getElementById("jokeDisplay").textContent = "Couldn't load joke 😞";
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
